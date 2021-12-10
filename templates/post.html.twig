@@ -1,0 +1,9 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+<div class="container page-content">
+    <h1>{{ page.title|e }}<small><i class="fas fa-user"></i> {{ page.header.author|e }}・{{ page.date|e }}更新</small></h1>
+    <hr />
+    {{ page.content|raw }}
+</div>
+{% endblock %}

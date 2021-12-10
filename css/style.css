@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+@media (min-width: 769px){
+    .sidebar-container {
+        min-height: 100vh;
+        border-right: 1px solid gainsboro;
+    }
+}
+@media (max-width: 768px){
+    .sidebar-container {
+        border-bottom: 1px solid gainsboro;
+    }
+    .sidebar-items {
+        padding-bottom: 50px;
+    }
+    .drawer-toggle-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.sidebar-long-button {
+    width: 100%;
+}
+.sidebar-icon-button {
+    margin: 4px!important;
+    display: inline-block;
+}
+.sidebar-items a{
+    border-radius: 30px;
+}
+nav {
+    margin: 0;
+    border: 0;
+}
+nav span{
+    margin-bottom: 11.2px;
+}
+nav * {
+    font-size: 1.2em;
+    padding-top: .7rem;
+    padding-bottom: .7rem;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+.nav-logo {
+    width: 90%;
+    padding: 40px 10px;
+}
+.drawer-toggle {
+    vertical-align: middle;
+}
+
+.content-container {
+    padding: 0 0 20px 0;
+}
+
+footer {
+    padding: 1.5rem;
+    background-color: gainsboro;
+}
+
+h2 {
+    border-left: 7px solid orangered;
+    border-bottom: 2px solid orangered;
+    padding: 4px 8px;
+    margin-top: 20px;
+}

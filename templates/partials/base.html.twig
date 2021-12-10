@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="{{ (grav.language.getActive ?: grav.config.site.default_lang)|e }}">
+<head>
+{% block head %}
+    <meta charset="utf-8" />
+    <title>{% if header.title %}{{ header.title|e }} | {% endif %}{{ site.title|e }}</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include 'partials/metadata.html.twig' %}
+
+    <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png')|e }}" />
+    <link rel="canonical" href="{{ page.canonical(true)|e }}" />
+{% endblock head %}
+
+{% block stylesheets %}
+    {% do assets.addCss('https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css', 100) %}
+    {% do assets.addCss('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', 99) %}
+    {% do assets.addCss('theme://css/main.css',  98) %}
+    {% do assets.addCss('theme://css/style.css', 97) %}
+    {% do assets.addCss('theme://css/page.css',  96) %}
+{% endblock %}
+
+{% block javascripts %}
+    {% do assets.addJs('jquery', 100) %}
+{% endblock %}
+
+    <script src="https://kit.fontawesome.com/36a6c1ef94.js" crossorigin="anonymous"></script>
+    <!-- スマホ版ドロワーの対応START -->
+    <script>
+        window.addEventListener('DOMContentLoaded', function(){
+            document.getElementById("sidebar-items").hidden = (window.innerWidth < 769);
+            window.addEventListener('resize', function(){
+                document.getElementById("sidebar-items").hidden = (window.innerWidth < 769);
+              });
+            }
+        );
+    </script>
+    <!-- スマホ版ドロワーの対応END -->
+
+{% block assets deferred %}
+    {{ assets.css()|raw }}
+    {{ assets.js()|raw }}
+{% endblock %}
+</head>
+<body id="top" class="{{ page.header.body_classes|e }}">
+
+<!-- SDK START -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v12.0" nonce="0W1ircoe"></script>
+    <!-- SDK END -->
+
+    <!-- Page Body START -->
+    <div>
+        <div class="row">
+            <!-- Navigation Columns -->
+            {% block header %}
+            <div class="col-sm-12 col-md-3 col-lg-2 sidebar-container">
+                <!-- Logo -->
+                <a class="hidden-sm" href="{{ home_url|e }}"><img src="{{ url('theme://images/logo.png')|e }}" alt="{{ config.site.title|e }}" class="nav-logo"/></a>
+                <div class="hidden-md hidden-lg row">
+                    <div class="col-sm-10">
+                        <a href="{{ home_url|e }}"><img src="{{ url('theme://images/logo.png')|e }}" alt="{{ config.site.title|e }}" class="nav-logo" /></a>
+                    </div>
+                    <div class="col-sm-2 drawer-toggle-wrap">
+                        <i class="fas fa-bars fa-2x" onclick='document.getElementById("sidebar-items").hidden = !document.getElementById("sidebar-items").hidden'></i>
+                    </div>
+                </div>
+
+                <!-- Sidebar Items -->
+                <div class="sidebar-items" id="sidebar-items">
+                    <nav>
+                        {% for page in pages.children.visible %}
+                            {% set current_page = (page.active or page.activeChild) ? 'selected' : '' %}
+                            <a href="{{ page.url|e }}">
+                                {% if page.header.icon %}<i class="fa fa-{{ page.header.icon|e }}"></i>{% endif %}
+                                {{ page.menu|e }}
+                            </a>
+                        {% endfor %}
+                    </nav>
+                </div>
+            </div>
+            {% endblock %}
+
+            <!-- Content Columns -->
+            {% block body %}
+            <div class="col-sm-12 col-md-9 col-lg-10 content-container">
+                {% block content %}{% endblock %}
+            </div>
+            {% endblock %}
+        </div>
+
+        {% block footer %}
+        <footer class="row">
+                (C) {{ config.site.title|e }} 2021&nbsp;-&nbsp;powered by&nbsp;<a href="getgrav.org/">grav</a>&nbsp;-&nbsp;designed by&nbsp;<a href="https://github.com/Kaniyama-t">@kaniyama-t</a>
+        </footer>
+        {% endblock %}
+    </div>
+
+{% block bottom %}
+    {{ assets.js('bottom')|raw }}
+{% endblock %}
+
+</body>
+</html>

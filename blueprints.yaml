@@ -1,0 +1,32 @@
+name: Peer Support
+slug: peer-support
+type: theme
+version: 0.1.0
+description: The theme for small-scale peer support group.
+icon: rebel
+author:
+  name: kaniyama_t
+  email: webmaster@kaniyama.net
+homepage: https://github.com/kaniyama-t/grav-theme-peer-support
+demo: https://demo-peer-support.x0.to/
+keywords: grav, theme, etc
+bugs: https://github.com/kaniyama-t/grav-theme-peer-support/issues
+readme: https://github.com/kaniyama-t/grav-theme-peer-support/blob/develop/README.md
+license: MIT
+
+dependencies:
+  - { name: grav, version: '>=1.6.0' }
+
+form:
+  validation: loose
+  fields:
+    dropdown.enabled:
+        type: toggle
+        label: Dropdown in Menu
+        highlight: 1
+        default: 1
+        options:
+          1: PLUGIN_ADMIN.ENABLED
+          0: PLUGIN_ADMIN.DISABLED
+        validate:
+          type: bool
